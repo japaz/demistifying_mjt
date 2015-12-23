@@ -37,8 +37,10 @@ app.use((req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
+
       res.render('index', {
         isDevelopment: isDevelopment,
+//        app: ReactDOMServer.renderToString(React.createFactory(RoutingContext)(renderProps))
         app: ReactDOMServer.renderToString(<RoutingContext {...renderProps} />)
       });
     } else {
