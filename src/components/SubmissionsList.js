@@ -1,5 +1,6 @@
 
 import React from 'react';
+import SubmissionLink from './SubmissionLink';
 
 class SubmissionsList extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class SubmissionsList extends React.Component {
       return (
         <tr key={submission.id}>
           {tr}
-          <td><Link to={`/submissions/${submission.id}`}>Show</Link></td>
+          <td><SubmissionLink submission_id={submission.id} /></td>
         </tr>
       );
     });
