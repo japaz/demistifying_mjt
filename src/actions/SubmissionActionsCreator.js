@@ -23,6 +23,12 @@ const SubmissionActionsCreator = {
       firstName: firstName,
       lastName: lastName
     })
+  },
+
+  getSubmissions() {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.GET_SUBMISSIONS
+    })
   }
 }
 

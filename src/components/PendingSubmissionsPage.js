@@ -1,7 +1,7 @@
-
 import React from 'react';
 import SubmissionsList from './SubmissionsList';
-import Connection from '../lib/Connection';
+import SubmissionsStore from '../stores/SubmissionsStore';
+import SubmissionActionsCreator from '../actions/SubmissionActionsCreator';
 
 class PendingSubmissionsPage extends SubmissionsList {
   constructor(props) {
@@ -9,13 +9,24 @@ class PendingSubmissionsPage extends SubmissionsList {
     this.state = {
       submissions: []
     };
+    this._onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    Connection.get('/submissions/pending').then((response) => {
-      this.setState({ submissions: response.data });
-    });
+    SubmissionActionsCreator.getSubmissions();
   }
+
+  componentWillMount() {
+    SubmissionsStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    SubmissionsStore.removeChangeListener(this._onChange);
+  }
+
+  onChange() {
+    this.setState({ submissions: SubmissionsStore.getSubmissions() });
+  } 
 
   render() {
     return (
