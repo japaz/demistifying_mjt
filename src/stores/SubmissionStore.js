@@ -58,7 +58,9 @@ submissionStore.dispatchToken = AppDispatcher.register((payload) => {
         last_name: payload.action.lastName
       }
     };
-    Connection.post('/submissions', data).then(() => {
+    Connection.post('/submissions', data).then((response) => {
+      submissionStore.submission = response.data;
+      submissionStore.emitChange();
       console.log(data);
     });    
     break;
