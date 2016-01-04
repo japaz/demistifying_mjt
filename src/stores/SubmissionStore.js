@@ -51,6 +51,17 @@ submissionStore.dispatchToken = AppDispatcher.register((payload) => {
         submissionStore.emitChange();
     });
     break;
+  case ActionTypes.CREATE_SUBMISSION:
+    const data = {
+      submission: {
+        first_name: payload.action.firstName,
+        last_name: payload.action.lastName
+      }
+    };
+    Connection.post('/submissions', data).then(() => {
+      console.log(data);
+    });    
+    break;
 
   default:
     // Do nothing

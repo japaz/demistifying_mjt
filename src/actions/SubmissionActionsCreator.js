@@ -15,6 +15,14 @@ const SubmissionActionsCreator = {
       id: id,
       rate: rate
     })
+  },
+
+  createSubmission(firstName, lastName) {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.CREATE_SUBMISSION,
+      firstName: firstName,
+      lastName: lastName
+    })
   }
 }
 

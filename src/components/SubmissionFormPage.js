@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Connection from '../lib/Connection';
+import SubmissionActionsCreator from '../actions/SubmissionActionsCreator';
 
 class SubmissionForm extends React.Component {
   handleSubmit(e) {
@@ -10,15 +11,7 @@ class SubmissionForm extends React.Component {
     this.refs.firstName.value = '';
     this.refs.lastName.value = '';
 
-    const data = {
-      submission: {
-        first_name: firstName,
-        last_name: lastName
-      }
-    };
-    Connection.post('/submissions', data).then(() => {
-      console.log(data);
-    });
+    SubmissionActionsCreator.createSubmission(firstName,lastName);
   }
 
   render() {
