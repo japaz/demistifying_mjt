@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Connection from '../lib/Connection';
 import SubmissionActionsCreator from '../actions/SubmissionActionsCreator';
 
 class SubmissionForm extends React.Component {
