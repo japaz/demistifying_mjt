@@ -1,7 +1,6 @@
 import React from 'react';
 import SubmissionsList from './SubmissionsList';
 import SubmissionsStore from '../stores/SubmissionsStore';
-import SubmissionActionsCreator from '../actions/SubmissionActionsCreator';
 
 class PendingSubmissionsPage extends SubmissionsList {
   constructor(props) {
@@ -13,7 +12,7 @@ class PendingSubmissionsPage extends SubmissionsList {
   }
 
   componentDidMount() {
-    SubmissionActionsCreator.getSubmissions();
+    SubmissionsStore.getSubmissions();
   }
 
   componentWillMount() {
