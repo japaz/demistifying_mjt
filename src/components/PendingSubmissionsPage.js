@@ -1,38 +1,36 @@
 import React from 'react';
 import SubmissionsList from './SubmissionsList';
-import SubmissionsStore from '../stores/SubmissionsStore';
+import { connect } from 'react-redux';
+import { fetchSubmissionsList } from '../actions_creators/SubmissionsListActionsCreator';
 
-class PendingSubmissionsPage extends SubmissionsList {
-  constructor(props) {
-    super(props);
-    this.state = {
-      submissions: []
-    };
-    this._onChange = this.onChange.bind(this);
+class PendingSubmissionsPage extends React.Component {
+  attributes() {
+    return ['first_name', 'last_name'];
   }
 
-  componentDidMount() {
-    SubmissionsStore.getSubmissions();
+  static fetchData(dispatch, params) {
+    return dispatch(fetchSubmissionsList('pending'));
   }
 
   componentWillMount() {
-    SubmissionsStore.addChangeListener(this._onChange);
+    PendingSubmissionsPage.fetchData(this.props.dispatch);
   }
-
-  componentWillUnmount() {
-    SubmissionsStore.removeChangeListener(this._onChange);
-  }
-
-  onChange() {
-    this.setState({ submissions: SubmissionsStore.getSubmissions() });
-  } 
 
   render() {
     return (
-      <SubmissionsList attributes={['first_name', 'last_name']}
+      <SubmissionsList attributes={this.attributes()}
         submissions={this.state.submissions} />
     );
   }
 };
 
-export default PendingSubmissionsPage;
+
+function select(state) {
+  const values = Object.keys(state.submissions).map(k => state.submissions[k]);
+  return {
+    submissions: values
+  };
+}  
+
+
+export default connect(select)(PendingSubmissionsPage);

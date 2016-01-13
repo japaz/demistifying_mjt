@@ -5,6 +5,10 @@ import Submission from './Submission';
 import { performRating, fetchSubmission } from '../actions_creators/SubmissionActionsCreator';
 
 class SubmissionPage extends React.Component {
+  static fetchData(dispatch, params) {
+    return dispatch(fetchSubmission(params.id));
+  }
+
   performRating(value) {
     this.props.dispatch(performRating(this.props.submission, value));
   }
