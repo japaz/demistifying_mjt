@@ -13,6 +13,7 @@ import DefaultConfig from './webpack/default.config.js';
 import DevConfig from './webpack/development.config.js';
 import createHistory from 'history/lib/createMemoryHistory';
 import SubmissionsListReducer from './src/reducers/SubmissionsListReducer';
+import Favicon from 'serve-favicon';
 
 let app = Express();
 let port = process.env.PORT || DefaultConfig.Port;
@@ -34,6 +35,8 @@ if (isDevelopment) {
 if (isProduction) {
   app.set('views', DefaultConfig.Dist);
 }
+
+app.use(Favicon(__dirname + '/public/favicon.ico'));
 
 app.use((request, response) => {
   const initialState = {};
