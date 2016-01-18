@@ -19,7 +19,7 @@ class PendingSubmissionsPage extends React.Component {
   render() {
     return (
       <SubmissionsList attributes={this.attributes()}
-        submissions={this.state.submissions} />
+        submissions={this.props.submissions} />
     );
   }
 };
