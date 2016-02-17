@@ -1,13 +1,11 @@
 import React from 'react';
 import SubmissionsList from './SubmissionsList';
+import SubmissionsListPage from './SubmissionsListPage';
+import { select } from './SubmissionsListPage';
 import { connect } from 'react-redux';
 import { fetchSubmissionsList } from '../actions_creators/SubmissionsListActionsCreator';
 
-class PendingSubmissionsPage extends React.Component {
-  attributes() {
-    return ['first_name', 'last_name'];
-  }
-
+class PendingSubmissionsPage extends SubmissionsListPage {
   static fetchData(dispatch, params) {
     return dispatch(fetchSubmissionsList('pending'));
   }
@@ -23,14 +21,5 @@ class PendingSubmissionsPage extends React.Component {
     );
   }
 };
-
-
-function select(state) {
-  const values = Object.keys(state.submissions).map(k => state.submissions[k]);
-  return {
-    submissions: values
-  };
-}  
-
 
 export default connect(select)(PendingSubmissionsPage);
