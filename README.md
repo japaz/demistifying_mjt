@@ -1,9 +1,13 @@
 # How to execute
 ## Development
+```shell
 npm start
+```
 ## Production
+```shell
 npm build
 npm production
+```
 
 # Execute 
 
