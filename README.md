@@ -5,8 +5,8 @@ npm start
 ```
 ## Production
 ```shell
-npm build
-npm production
+npm run build
+npm run production
 ```
 
 # Execute 
